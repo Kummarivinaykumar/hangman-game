@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Over</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'hangman/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Game Over!</h1>
+        <p>The word was: <strong>{{ word }}</strong></p>
+        <form action="{% url 'reset_game' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Play Again</button>
+        </form>
+    </div>
+</body>
+</html>

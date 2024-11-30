@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'hangman/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Hangman Game</h1>
+        <div class="flex justify-center mb-4">
+            <img alt="Hangman game illustration with a stick figure hanging on a gallows" class="w-32 h-32" height="150" src="https://storage.googleapis.com/a1aa/image/8CgRditMUwbPBpJGCRb8N52KiRH8760xCurW864FgCPRVe6JA.jpg" width="150"/>
+           </div>
+           <p class="word-guess">Word to guess: <strong>{{ display_word }}</strong></p>
+        <p class="guessed-letters">Guessed letters: {{ guessed_letters }}</p>
+        <p>Tries left: {{ tries_left }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="guess" maxlength="1" required>
+            <button type="submit">Guess</button>
+        </form>
+
+        <form action="{% url 'reset_game' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Reset Game</button>
+        </form>
+    </div>
+</body>
+</html>
